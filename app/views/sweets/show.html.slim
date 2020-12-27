@@ -1,0 +1,33 @@
+h1 タスク詳細
+
+.nav.justify-content-end
+  = link_to '一覧', sweets_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th = Sweet.human_attribute_name(:use_id)
+      td = @sweet.id
+    tr
+      th = Sweet.human_attribute_name(:title)
+      td = @sweet.title
+    tr
+      th = Sweet.human_attribute_name(:price)
+      td = @sweet.price
+    tr
+      th = Sweet.human_attribute_name(:calorie)
+      td = @sweet.calorie
+    tr
+      th = Sweet.human_attribute_name(:image)
+      td = @sweet.image.to_s
+    tr
+      th = Sweet.human_attribute_name(:description)
+      td = simple_format(h(@sweet.description), {}, sanitize: false, warpper_tag: "div")
+    tr
+      th = Sweet.human_attribute_name(:created_at)
+      td = @sweet.created_at
+    tr
+      th = Sweet.human_attribute_name(:updated_at)
+      td = @sweet.updated_at
+
+= link_to '編集', edit_sweet_path, class: 'btn btn-primary mr-3'
+= link_to '削除', @sweet, method: :delete, data: { confirm: "タスク「#{@sweet.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

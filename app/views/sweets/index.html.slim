@@ -1,0 +1,27 @@
+h1 お菓子一覧
+
+= link_to  '新しいお菓子の登録', new_sweet_path,  class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th = Sweet.human_attribute_name(:title)
+      th = Sweet.human_attribute_name(:price)
+      th = Sweet.human_attribute_name(:calorie)
+      th = Sweet.human_attribute_name(:description)
+      th = Sweet.human_attribute_name(:created_at)
+      th = Sweet.human_attribute_name(:updated_at)
+      th
+  tbody
+    - @sweets.each do |sweet|
+      tr
+        td = link_to sweet.title, sweet
+        td = sweet.price
+        td = sweet.calorie        
+        td = sweet.description
+        td = sweet.created_at
+        td = sweet.updated_at        
+        td
+          = link_to '編集', edit_sweet_path(sweet), class: 'btn btn-primary mr-3'
+          = link_to '削除', sweet, method: :delete, date: { confirm: "タスク「#{sweet.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
