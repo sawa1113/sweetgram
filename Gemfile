@@ -65,3 +65,7 @@ gem 'slim-rails'
 gem 'html2slim'
 
 gem 'bootstrap'
+
+gem 'simple_form'
+
+gem 'ransack'

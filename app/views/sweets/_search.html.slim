@@ -1,0 +1,32 @@
+= search_form_for @q do |f|
+  .form-group.row
+    = f.label :id_cont, 'ID', class: 'col-sm-2 col-form-label'
+    .col-md-5
+      = f.search_field :id_cont,  class: 'form-control'
+  .form-group.row
+    = f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
+    .col-md-5
+      = f.search_field :title_cont,  class: 'form-control'
+  .form-group.row
+    = f.label :price_cont, '価格', class: 'col-sm-2 col-form-label'
+    .col-md-2
+      = f.search_field :price_gteq,  class: 'form-control'
+    | ～
+    .col-md-2
+      = f.search_field :price_lteq,  class: 'form-control'
+  .form-group.row
+    = f.label :calorie_cont, 'カロリー', class: 'col-sm-2 col-form-label'
+    .col-md-2
+      = f.search_field :calorie_gteq, class: 'form-control'
+    | ～
+    .col-md-2
+      = f.search_field :calorie_lteq, class: 'form-control'
+  /.form-group.row
+    = f.label :image_cont, '写真', class: 'col-sm-2 col-form-label'
+    .col-md-5
+      = f.search_field :image_cont,  class: 'form-control'
+  .form-group.row
+    = f.label :description_cont, '説明', class: 'col-sm-2 col-form-label'
+    .col-md-5
+      = f.search_field :description_cont,  class: 'form-control'
+  = f.submit nil, class: 'btn btn-primary mr-3'
