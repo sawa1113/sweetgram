@@ -1,6 +1,7 @@
 class SweetsController < ApplicationController
   def index
-    @sweets = Sweet.all
+    @q = Sweet.ransack(params[:q])
+    @sweets = @q.result(distinct: true)
   end
 
   def show
@@ -16,9 +17,12 @@ class SweetsController < ApplicationController
   end
 
   def update
-    sweet = Sweet.find(params[:id])
-    sweet.update!(sweet_params)
-    redirect_to sweets_url, notice: "タスク 「#{sweet.title}」を更新しました。"
+    @sweet = Sweet.find(params[:id])
+    if @sweet.update(sweet_params)
+      redirect_to sweets_url, notice: "タスク 「#{sweet.title}」を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -28,9 +32,12 @@ class SweetsController < ApplicationController
   end
 
   def create
-    sweet = Sweet.new(sweet_params)
-    sweet.save!
-    redirect_to sweets_url, notice: "タスク 「#{sweet.title}」を登録しました。"
+    @sweet = Sweet.new(sweet_params)
+    if @sweet.save
+      redirect_to sweets_url, notice: "タスク 「#{sweet.title}」を登録しました。"
+    else
+      render :new
+    end
   end
 
   private

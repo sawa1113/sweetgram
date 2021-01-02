@@ -1,14 +1,15 @@
-= form_with model: sweet, local: true do |f|
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control', id: 'sweet_title'
-  .form-group
-    = f.label :price
-    = f.number_field :price, class: 'form-control', id: 'sweet_price'
-  .form-group
-    = f.label :calorie
-    = f.number_field :calorie, class: 'form-control', id: 'sweet_calorie'
-  .form-group
-    = f.label :description
-    = f.text_area :description, row: 5, class: 'form-control', id: 'sweet_description'
-  = f.submit nil, class: 'btn btn-primary'
+.container
+  .row
+    .col-sm-12.no-padding
+      .ibox
+        .ibox-title.height-centering
+          .col-sm-4
+            = simple_form_for @sweet do |f|
+              = f.input :id
+              = f.input :title
+              = f.input :price
+              = f.input :calorie
+              /= f.input :image.to_s
+              = f.input :description
+              = f.submit nil, class: 'btn btn-primary mr-3'
+              = link_to '一覧', sweets_path, class: 'btn btn-success mr-3'
